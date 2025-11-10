@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StallonClicks - About Us</title>
+    <style>
+        /* General Styling with CSS Variables for Theming */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #E87A5D;
+            --primary-hover-color: #d16c50;
+            
+            /* Light Theme */
+            --bg-color-light: #fff;
+            --secondary-bg-light: #FDF4F1;
+            --text-color-light: #333;
+            --card-bg-light: #f9f9f9;
+            --border-color-light: #ddd;
+
+            /* Dark Theme */
+            --bg-color-dark: #121212;
+            --secondary-bg-dark: #1e1e1e;
+            --text-color-dark: #f0f0f0;
+            --card-bg-dark: #2a2a2a;
+            --border-color-dark: #444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+        
+        body.dark-mode { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
+        .container { max-width: 1100px; margin: auto; overflow: hidden; padding: 0 2rem; }
+        h1, h2, h3 { font-weight: 600; }
+
+        /* Header & Navigation */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; width: 100%; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-container .logo-icon { width: 40px; height: 40px; fill: var(--primary-color); margin-right: 10px; }
+        .logo-container .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--text-color-light); }
+        body.dark-mode .logo-container .logo-text { color: var(--text-color-dark); }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-menu ul { display: flex; list-style: none; }
+        .nav-menu ul li { margin-left: 2rem; }
+        .nav-menu ul li a { text-decoration: none; color: var(--text-color-light); font-weight: 600; transition: color 0.3s ease; }
+        body.dark-mode .nav-menu ul li a { color: var(--text-color-dark); }
+        .nav-menu ul li a:hover, .nav-menu ul li a.active { color: var(--primary-color); }
+        
+        /* Theme Toggle */
+        .theme-toggle { cursor: pointer; margin-left: 2rem; background: none; border: none; }
+        .theme-toggle svg { width: 22px; height: 22px; fill: var(--text-color-light); transition: fill 0.3s; }
+        body.dark-mode .theme-toggle svg { fill: var(--text-color-dark); }
+        .theme-toggle .moon-icon { display: block; } .theme-toggle .sun-icon { display: none; }
+        body.dark-mode .theme-toggle .moon-icon { display: none; } body.dark-mode .theme-toggle .sun-icon { display: block; }
+
+        /* Page Header */
+        .page-header { background: var(--secondary-bg-light); padding: 4rem 0; text-align: center; transition: background-color 0.3s; }
+        body.dark-mode .page-header { background: var(--secondary-bg-dark); }
+        .page-header h1 { font-size: 3rem; }
+        .page-header p { font-size: 1.2rem; color: #666; }
+        body.dark-mode .page-header p { color: #aaa; }
+        
+        /* About Section */
+        .about-section { padding: 5rem 0; }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .about-content img { width: 100%; border-radius: 15px; }
+        .about-text h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+        .about-text p { margin-bottom: 1rem; }
+        
+        /* Mission Section */
+        .mission-section { background: var(--card-bg-light); padding: 5rem 0; text-align: center; transition: background-color 0.3s; }
+        body.dark-mode .mission-section { background: var(--secondary-bg-dark); }
+        .mission-section h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .mission-section p { max-width: 800px; margin: auto; font-size: 1.1rem; }
+
+        /* Team Section */
+        .team-section { padding: 5rem 0; text-align: center; }
+        .team-section h2 { font-size: 2.5rem; margin-bottom: 3rem; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .team-member { background: var(--secondary-bg-light); padding: 2rem; border-radius: 15px; transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s; }
+        body.dark-mode .team-member { background: var(--card-bg-dark); }
+        .team-member:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        body.dark-mode .team-member:hover { box-shadow: none; }
+        .team-member img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 4px solid var(--primary-color); }
+        .team-member h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .team-member p.role { font-weight: 600; color: var(--primary-color); }
+        
+        /* Footer */
+        .footer { background: var(--secondary-bg-light); color: var(--text-color-light); text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color-light); transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+        body.dark-mode .footer { background: var(--bg-color-dark); color: var(--text-color-dark); border-top: 1px solid var(--border-color-dark); }
+
+        /* WhatsApp Floating Icon */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo-container">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 8c-2.209 0-4 1.791-4 4s1.791 4 4 4 4-1.791 4-4-1.791-4-4-4zm0-2c3.313 0 6 2.687 6 6s-2.687 6-6 6-6-2.687-6-6 2.687-6 6-6zm8-3.945l1.945-1.945v2.889h2v-6.889h-6.889v2h2.889l-1.945 1.945-1.414-1.414 1.945-1.945h-2.889v-2h6.889v6.889h-2v-2.889l-1.945-1.945 1.414 1.414z"/></svg>
+                    <span class="logo-text">StallonClicks</span>
+                </a>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="platforms.html">Platforms</a></li>
+                        <li><a href="about.html" class="active">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-4.01 3.427A9.973 9.973 0 0 0 2 12.01c0 5.523 4.477 10 10 10 4.549 0 8.413-3.041 9.573-7.141A9.01 9.01 0 0 1 12 11.807z"/></svg>
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2z"/></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-in">About StallonClicks</h1>
+            <p class="fade-in">Connecting creatives to opportunity.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Our Story</h2>
+                    <p>The digital creative landscape is vast and vibrant, but also fragmented. We saw brilliant platforms with amazing tools struggling to reach their audience, while passionate creatives were lost in a sea of options, unsure which to trust.</p>
+                    <p>StallonClicks was born to be the bridge. We created a central hub to spotlight the most innovative, useful, and inspiring platforms, making it easier for creatives to find exactly what they need and for platform builders to find their dedicated users.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Diverse team in a meeting">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container fade-in">
+            <h2>Our Dual Mission</h2>
+            <p>For creatives, we provide a trusted, curated guide to the best resources available. For platforms, we offer a powerful spotlight to connect them with a global community hungry for innovation. We exist to help both sides of the creative equation thrive.</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="fade-in">Meet The Team</h2>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team Member 1">
+                    <h3>John Doe</h3>
+                    <p class="role">Founder & Visionary</p>
+                </div>
+                <div class="team-member fade-in">
+                    <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team Member 2">
+                    <h3>Jane Smith</h3>
+                    <p class="role">Head of Platform Curation</p>
+                </div>
+                <div class="team-member fade-in">
+                    <img src="https://images.pexels.com/photos/837358/pexels-photo-837358.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Team Member 3">
+                    <h3>Samuel Adebayo</h3>
+                    <p class="role">Community & Outreach</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 StallonClicks. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Icon -->
+    <a href="https://wa.me/237652995211" class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    </a>
+    
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const applyTheme = (theme) => {
+            if (theme === 'dark') { body.classList.add('dark-mode'); } 
+            else { body.classList.remove('dark-mode'); }
+        };
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // --- FADE-IN ANIMATION SCRIPT ---
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) { return; } 
+                else { entry.target.classList.add('visible'); appearOnScroll.unobserve(entry.target); }
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>

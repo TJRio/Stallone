@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StallonClicks - Discover Creative Platforms</title>
+    <style>
+        /* General Styling with CSS Variables for Theming */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #E87A5D;
+            --primary-hover-color: #d16c50;
+            
+            /* Light Theme */
+            --bg-color-light: #fff;
+            --secondary-bg-light: #FDF4F1;
+            --text-color-light: #333;
+            --card-bg-light: #f9f9f9;
+            --border-color-light: #ddd;
+
+            /* Dark Theme */
+            --bg-color-dark: #121212;
+            --secondary-bg-dark: #1e1e1e;
+            --text-color-dark: #f0f0f0;
+            --card-bg-dark: #2a2a2a;
+            --border-color-dark: #444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+        
+        body.dark-mode { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
+        .container { max-width: 1100px; margin: auto; overflow: hidden; padding: 0 2rem; }
+        h1, h2 { font-weight: 600; }
+        .btn { display: inline-block; background: var(--primary-color); color: #fff; padding: 0.8rem 1.8rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid var(--primary-color); }
+        .btn:hover { background: var(--primary-hover-color); border-color: var(--primary-hover-color); }
+
+        /* Header & Navigation */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; width: 100%; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; }
+        .logo-container .logo-icon { width: 40px; height: 40px; fill: var(--primary-color); margin-right: 10px; }
+        .logo-container .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--text-color-light); }
+        body.dark-mode .logo-container .logo-text { color: var(--text-color-dark); }
+        .nav-menu { display: flex; align-items: center; }
+        .nav-menu ul { display: flex; list-style: none; }
+        .nav-menu ul li { margin-left: 2rem; }
+        .nav-menu ul li a { text-decoration: none; color: var(--text-color-light); font-weight: 600; transition: color 0.3s ease; }
+        body.dark-mode .nav-menu ul li a { color: var(--text-color-dark); }
+        .nav-menu ul li a:hover, .nav-menu ul li a.active { color: var(--primary-color); }
+        
+        /* Theme Toggle */
+        .theme-toggle { cursor: pointer; margin-left: 2rem; background: none; border: none; }
+        .theme-toggle svg { width: 22px; height: 22px; fill: var(--text-color-light); transition: fill 0.3s; }
+        body.dark-mode .theme-toggle svg { fill: var(--text-color-dark); }
+        .theme-toggle .moon-icon { display: block; } .theme-toggle .sun-icon { display: none; }
+        body.dark-mode .theme-toggle .moon-icon { display: none; } body.dark-mode .theme-toggle .sun-icon { display: block; }
+
+        /* Page Header */
+        .page-header { background: var(--secondary-bg-light); padding: 4rem 0; text-align: center; transition: background-color 0.3s; }
+        body.dark-mode .page-header { background: var(--secondary-bg-dark); }
+        .page-header h1 { font-size: 3rem; }
+        .page-header p { font-size: 1.2rem; color: #666; }
+        body.dark-mode .page-header p { color: #aaa; }
+
+        /* Platform Directory Section */
+        .platform-directory { padding: 5rem 0; }
+        .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        
+        .platform-card-full {
+            background: var(--bg-color-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+        }
+        body.dark-mode .platform-card-full { background: var(--card-bg-dark); border-color: var(--border-color-dark); }
+        .platform-card-full:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        body.dark-mode .platform-card-full:hover { box-shadow: none; }
+        
+        .platform-card-full .card-banner img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .card-content p { margin-bottom: 1rem; flex-grow: 1; }
+        
+        .card-tags { margin-bottom: 1.5rem; }
+        .card-tags span {
+            display: inline-block;
+            background: var(--secondary-bg-light);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        body.dark-mode .card-tags span { background: var(--secondary-bg-dark); }
+
+        .card-footer { margin-top: auto; }
+
+        /* Footer */
+        .footer { background: var(--secondary-bg-light); color: var(--text-color-light); text-align: center; padding: 2rem 0; border-top: 1px solid var(--border-color-light); transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+        body.dark-mode .footer { background: var(--bg-color-dark); color: var(--text-color-dark); border-top: 1px solid var(--border-color-dark); }
+
+        /* WhatsApp Floating Icon */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo-container">
+                    <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 8c-2.209 0-4 1.791-4 4s1.791 4 4 4 4-1.791 4-4-1.791-4-4-4zm0-2c3.313 0 6 2.687 6 6s-2.687 6-6 6-6-2.687-6-6 2.687-6 6-6zm8-3.945l1.945-1.945v2.889h2v-6.889h-6.889v2h2.889l-1.945 1.945-1.414-1.414 1.945-1.945h-2.889v-2h6.889v6.889h-2v-2.889l-1.945-1.945 1.414 1.414z"/></svg>
+                    <span class="logo-text">StallonClicks</span>
+                </a>
+                <div class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="platforms.html" class="active">Platforms</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-4.01 3.427A9.973 9.973 0 0 0 2 12.01c0 5.523 4.477 10 10 10 4.549 0 8.413-3.041 9.573-7.141A9.01 9.01 0 0 1 12 11.807z"/></svg>
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2z"/></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-in">Creative Platform Directory</h1>
+            <p class="fade-in">Discover the best tools, courses, and communities to fuel your creativity.</p>
+        </div>
+    </section>
+
+    <!-- Platform Directory Section -->
+    <section class="platform-directory">
+        <div class="container">
+            <div class="platform-grid">
+                
+                <!-- Platform Card 1 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/1181345/pexels-photo-1181345.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Photography platform banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>PixelPerfect</h3>
+                        <p>An all-in-one platform for photographers offering masterclasses from renowned artists, advanced editing presets, and a vibrant community forum.</p>
+                        <div class="card-tags">
+                            <span>Photography</span>
+                            <span>Education</span>
+                            <span>Community</span>
+                        </div>
+                        <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Card 2 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Design platform banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>DesignHub</h3>
+                        <p>The ultimate toolkit for graphic designers. Access a massive library of assets, collaborate on projects in real-time, and find your next client.</p>
+                        <div class="card-tags">
+                            <span>Design</span>
+                            <span>Tools</span>
+                            <span>Freelance</span>
+                        </div>
+                         <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Card 3 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/3756785/pexels-photo-3756785.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Music production banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>SoundWeave</h3>
+                        <p>From beginner basics to advanced synthesis, SoundWeave provides interactive courses and tutorials for modern music producers.</p>
+                        <div class="card-tags">
+                            <span>Music</span>
+                            <span>Education</span>
+                        </div>
+                         <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Platform Card 4 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/4144222/pexels-photo-4144222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Writing platform banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>Verve Writers</h3>
+                        <p>Connect with fellow writers, join workshops, and access powerful editing tools to bring your stories to life. For novelists, bloggers, and poets.</p>
+                        <div class="card-tags">
+                            <span>Writing</span>
+                            <span>Community</span>
+                            <span>Tools</span>
+                        </div>
+                         <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Platform Card 5 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/5076516/pexels-photo-5076516.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Filmmaking platform banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>CineStream</h3>
+                        <p>The definitive resource for indie filmmakers. Learn screenwriting, cinematography, and directing, and get your film funded.</p>
+                        <div class="card-tags">
+                            <span>Filmmaking</span>
+                            <span>Education</span>
+                            <span>Funding</span>
+                        </div>
+                         <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform Card 6 -->
+                <div class="platform-card-full fade-in">
+                    <div class="card-banner">
+                        <img src="https://images.pexels.com/photos/1181403/pexels-photo-1181403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Coding platform banner">
+                    </div>
+                    <div class="card-content">
+                        <h3>CodeCanvas</h3>
+                        <p>An interactive learning platform for creative coders and web developers. Build beautiful, responsive websites and generative art from scratch.</p>
+                        <div class="card-tags">
+                            <span>Development</span>
+                            <span>Creative Coding</span>
+                        </div>
+                         <div class="card-footer">
+                             <a href="#" class="btn">Visit Platform</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 StallonClicks. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Icon -->
+    <a href="https://wa.me/237652995211" class="whatsapp-float" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+    </a>
+    
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const applyTheme = (theme) => {
+            if (theme === 'dark') { body.classList.add('dark-mode'); } 
+            else { body.classList.remove('dark-mode'); }
+        };
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+        // --- FADE-IN ANIMATION SCRIPT ---
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) { return; } 
+                else { entry.target.classList.add('visible'); appearOnScroll.unobserve(entry.target); }
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>
