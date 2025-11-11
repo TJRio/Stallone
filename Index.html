@@ -46,9 +46,7 @@
         body.dark-mode .btn-light { background: var(--card-bg-dark); }
         .btn-light:hover { background: var(--primary-color); color: #fff; }
 
-        /* =================================== */
-        /* ===== RESPONSIVE HEADER & NAV ===== */
-        /* =================================== */
+        /* Responsive Header & Nav */
         .header {
             background-color: var(--bg-color-light);
             border-bottom: 1px solid var(--border-color-light);
@@ -68,9 +66,8 @@
         body.dark-mode .logo-container .logo-text { color: var(--text-color-dark); }
         
         .nav-right { display: flex; align-items: center; }
-        .nav-menu { list-style: none; display: none; } /* Hidden on mobile */
+        .nav-menu { list-style: none; display: none; }
         
-        /* Hamburger Menu Icon */
         .hamburger {
             display: flex;
             flex-direction: column;
@@ -97,7 +94,6 @@
         .hamburger.open .bar:nth-child(2) { opacity: 0; transform: translateX(20px); }
         .hamburger.open .bar:nth-child(3) { transform: rotate(-45deg); }
 
-        /* Mobile Menu Panel */
         .mobile-menu {
             display: flex;
             flex-direction: column;
@@ -120,14 +116,12 @@
         body.dark-mode .mobile-menu li a { color: var(--text-color-dark); }
         .mobile-menu li a.active, .mobile-menu li a:hover { color: var(--primary-color); }
         
-        /* Theme Toggle */
         .theme-toggle { cursor: pointer; background: none; border: none; margin-left: 1rem; }
         .theme-toggle svg { width: 22px; height: 22px; fill: var(--text-color-light); transition: fill 0.3s; }
         body.dark-mode .theme-toggle svg { fill: var(--text-color-dark); }
         .theme-toggle .moon-icon { display: block; } .theme-toggle .sun-icon { display: none; }
         body.dark-mode .theme-toggle .moon-icon { display: none; } body.dark-mode .theme-toggle .sun-icon { display: block; }
         
-        /* Tablet & Desktop Styles */
         @media (min-width: 768px) {
             .hamburger, .mobile-menu { display: none; }
             .nav-menu { display: flex; align-items: center; }
@@ -181,7 +175,7 @@
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* TABLET MEDIA QUERIES */
+        /* TABLET & DESKTOP MEDIA QUERIES */
         @media (min-width: 768px) {
             h1 { font-size: 3rem; }
             .hero-content { flex-direction: row; text-align: left; }
@@ -204,29 +198,20 @@
                 </a>
                 
                 <div class="nav-right">
-                    <!-- Desktop Menu -->
                     <ul class="nav-menu">
                         <li><a href="index.html" class="active">Home</a></li>
                         <li><a href="platforms.html">Platforms</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
-
                     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
                         <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-4.01 3.427A9.973 9.973 0 0 0 2 12.01c0 5.523 4.477 10 10 10 4.549 0 8.413-3.041 9.573-7.141A9.01 9.01 0 0 1 12 11.807z"/></svg>
                         <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2zm-4 0h-2v2h2v-2zm8 0h-2v2h2v-2zm-4-4h-2v2h2v-2z"/></svg>
                     </button>
-                    
-                    <!-- Hamburger Icon -->
-                    <button class="hamburger" id="hamburger-button" aria-label="Open menu">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </button>
+                    <button class="hamburger" id="hamburger-button" aria-label="Open menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
                 </div>
             </nav>
         </div>
-        <!-- Mobile Menu Panel -->
         <ul class="mobile-menu" id="mobile-menu">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="platforms.html">Platforms</a></li>
@@ -276,7 +261,9 @@
         </div>
     </section>
 
-    <!-- Advertisement Section -->
+    <!-- ================================================= -->
+    <!-- ========= ADVERTISEMENT SECTION START ========= -->
+    <!-- ================================================= -->
     <section class="ad-section">
         <div class="container">
             <h2 class="fade-in">Sponsored Partner</h2>
@@ -285,6 +272,9 @@
             </div>
         </div>
     </section>
+    <!-- =============================================== -->
+    <!-- ========= ADVERTISEMENT SECTION END ========= -->
+    <!-- =============================================== -->
 
     <!-- Featured Platforms Section -->
     <section class="featured-platforms">
@@ -318,40 +308,36 @@
     </footer>
 
     <!-- WhatsApp Floating Icon -->
-    <a href="https://wa.me/681997454" class="whatsapp-float" target="_blank" style="display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.3s ease;">
+    <a href="https://wa.me/237652995211" class="whatsapp-float" target="_blank" style="display: flex; justify-content: center; align-items: center; text-decoration: none; transition: transform 0.3s ease;">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
     </a>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- HAMBURGER MENU SCRIPT ---
+            // Hamburger Menu Script
             const hamburgerButton = document.getElementById('hamburger-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
             hamburgerButton.addEventListener('click', () => {
                 hamburgerButton.classList.toggle('open');
                 mobileMenu.classList.toggle('open');
             });
 
-            // --- THEME TOGGLE SCRIPT ---
+            // Theme Toggle Script
             const themeToggle = document.getElementById('theme-toggle');
             const body = document.body;
-            
             const applyTheme = (theme) => {
                 if (theme === 'dark') { body.classList.add('dark-mode'); } 
                 else { body.classList.remove('dark-mode'); }
             };
-            
             const savedTheme = localStorage.getItem('theme') || 'light';
             applyTheme(savedTheme);
-            
             themeToggle.addEventListener('click', () => {
                 const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
                 localStorage.setItem('theme', newTheme);
                 applyTheme(newTheme);
             });
 
-            // --- FADE-IN ANIMATION SCRIPT ---
+            // Fade-in Animation Script
             const faders = document.querySelectorAll('.fade-in');
             const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
